@@ -26,7 +26,10 @@ export default function Login() {
     } = e;
 
     //* Se não digitou nada sai da função sem ativar erro.
-    if (!typedEmail) return undefined;
+    if (!typedEmail) {
+      setEmailError(null);
+      return undefined;
+    }
 
     //* Regex de e-mail
     const validator = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -45,7 +48,10 @@ export default function Login() {
     } = e;
 
     //* Se não digitou nada sai da função sem ativar erro.
-    if (!typedPassword) return undefined;
+    if (!typedPassword) {
+      setPasswordError(null);
+      return undefined;
+    }
 
     //* Validação do tamanho da senha
     if (typedPassword.length < 4) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Grid,
   Icon,
@@ -10,6 +10,7 @@ import {
   Message,
 } from 'semantic-ui-react';
 
+import GenerateToken from '../utils/Login/GenerateToken';
 import '../css/Login.css';
 
 export default function Login() {
@@ -17,11 +18,16 @@ export default function Login() {
   const [password, setPassword] = useState();
   const [passwordError, setPasswordError] = useState(null);
   const [emailError, setEmailError] = useState(null);
+  const history = useHistory();
 
   const emailValidator = (e) => {
     const {
       target: { value: typedEmail },
     } = e;
+
+    //* Se não digitou nada sai da função sem ativar erro.
+    if (!typedEmail) return undefined;
+
     //* Regex de e-mail
     const validator = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!validator.test(typedEmail)) {
@@ -38,6 +44,9 @@ export default function Login() {
       target: { value: typedPassword },
     } = e;
 
+    //* Se não digitou nada sai da função sem ativar erro.
+    if (!typedPassword) return undefined;
+
     //* Validação do tamanho da senha
     if (typedPassword.length < 4) {
       return setPasswordError('Digite uma senha com no mínimo 4 caracteres');
@@ -47,6 +56,12 @@ export default function Login() {
     setPasswordError(null);
     return setPassword(typedPassword);
   }
+
+  const login = () => {
+    const token = GenerateToken();
+    localStorage.setItem('token', JSON.stringify(token));
+    history.push('/listing');
+  };
 
   return (
     <Grid>
@@ -94,6 +109,7 @@ export default function Login() {
                     color="orange"
                     fluid
                     size="large"
+                    onClick={() => login()}
                   >
                     Login
                   </Button>

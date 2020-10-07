@@ -7,6 +7,7 @@ function App() {
   return (
     <Switch>
       <Route path="/register" component={() => <div>tela de registro</div>} />
+      <Route path="/listing" component={() => <div>tela de listagem</div>} />
       <Route exact path="/" component={Login} />
     </Switch>
   );

@@ -13,6 +13,41 @@ import {
 import '../css/Login.css';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState();
+  const [passwordError, setPasswordError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+
+  const emailValidator = (e) => {
+    const {
+      target: { value: typedEmail },
+    } = e;
+    //* Regex de e-mail
+    const validator = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!validator.test(typedEmail)) {
+      return setEmailError('Você digitou um e-mail inválido');
+    }
+
+    //* Passando no validador incluir no state ao sair do foco do campo (onBlur)
+    setEmailError(null);
+    return setEmail(typedEmail);
+  };
+
+  function passwordValidator(e) {
+    const {
+      target: { value: typedPassword },
+    } = e;
+
+    //* Validação do tamanho da senha
+    if (typedPassword.length < 4) {
+      return setPasswordError('Digite uma senha com no mínimo 4 caracteres');
+    }
+
+    //* Passando no validador incluir no state ao sair do foco do campo (onBlur)
+    setPasswordError(null);
+    return setPassword(typedPassword);
+  }
+
   return (
     <Grid>
       <Grid.Row stretched>
@@ -39,6 +74,8 @@ export default function Login() {
                     icon="user"
                     iconPosition="left"
                     placeholder="Endereço de e-mail"
+                    onBlur={(e) => emailValidator(e)}
+                    error={emailError}
                   />
                   <Form.Input
                     fluid
@@ -46,9 +83,18 @@ export default function Login() {
                     iconPosition="left"
                     placeholder="Senha"
                     type="password"
+                    onBlur={(e) => passwordValidator(e)}
+                    error={passwordError}
                   />
 
-                  <Button color="orange" fluid size="large">
+                  <Button
+                    disabled={
+                      !email || !password || emailError || passwordError
+                    }
+                    color="orange"
+                    fluid
+                    size="large"
+                  >
                     Login
                   </Button>
                 </Segment>

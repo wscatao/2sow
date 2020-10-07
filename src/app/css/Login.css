@@ -1,0 +1,9 @@
+.bglogin {
+  min-height: 104vh;
+  background-image: url(../images/bgLogin.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 0;
+  box-shadow: 4px 0 5px -2px #888;
+}

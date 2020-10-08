@@ -11,6 +11,8 @@ import {
 } from 'semantic-ui-react';
 
 import GenerateToken from '../utils/Login/GenerateToken';
+import EmailValidator from '../utils/Common/EmailValidator';
+import PasswordValidator from '../utils/Common/PasswordValidator';
 import '../css/Login.css';
 
 export default function Login() {
@@ -20,48 +22,26 @@ export default function Login() {
   const [emailError, setEmailError] = useState(null);
   const history = useHistory();
 
-  const emailValidator = (e) => {
-    const {
-      target: { value: typedEmail },
-    } = e;
+  // function passwordValidator(e) {
+  //   const {
+  //     target: { value: typedPassword },
+  //   } = e;
 
-    //* Se não digitou nada sai da função sem ativar erro.
-    if (!typedEmail) {
-      setEmailError(null);
-      return undefined;
-    }
+  //   //* Se não digitou nada sai da função sem ativar erro.
+  //   if (!typedPassword) {
+  //     setPasswordError(null);
+  //     return undefined;
+  //   }
 
-    //* Regex de e-mail
-    const validator = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if (!validator.test(typedEmail)) {
-      return setEmailError('Você digitou um e-mail inválido');
-    }
+  //   //* Validação do tamanho da senha
+  //   if (typedPassword.length < 4) {
+  //     return setPasswordError('Digite uma senha com no mínimo 4 caracteres');
+  //   }
 
-    //* Passando no validador incluir no state ao sair do foco do campo (onBlur)
-    setEmailError(null);
-    return setEmail(typedEmail);
-  };
-
-  function passwordValidator(e) {
-    const {
-      target: { value: typedPassword },
-    } = e;
-
-    //* Se não digitou nada sai da função sem ativar erro.
-    if (!typedPassword) {
-      setPasswordError(null);
-      return undefined;
-    }
-
-    //* Validação do tamanho da senha
-    if (typedPassword.length < 4) {
-      return setPasswordError('Digite uma senha com no mínimo 4 caracteres');
-    }
-
-    //* Passando no validador incluir no state ao sair do foco do campo (onBlur)
-    setPasswordError(null);
-    return setPassword(typedPassword);
-  }
+  //   //* Passando no validador incluir no state ao sair do foco do campo (onBlur)
+  //   setPasswordError(null);
+  //   return setPassword(typedPassword);
+  // }
 
   const login = () => {
     const token = GenerateToken();
@@ -95,7 +75,7 @@ export default function Login() {
                     icon="user"
                     iconPosition="left"
                     placeholder="Endereço de e-mail"
-                    onBlur={(e) => emailValidator(e)}
+                    onBlur={(e) => EmailValidator(e, setEmailError, setEmail)}
                     error={emailError}
                     tabIndex="0"
                   />
@@ -105,7 +85,9 @@ export default function Login() {
                     iconPosition="left"
                     placeholder="Senha"
                     type="password"
-                    onBlur={(e) => passwordValidator(e)}
+                    onBlur={(e) =>
+                      PasswordValidator(e, setPasswordError, setPassword)
+                    }
                     error={passwordError}
                   />
 

@@ -97,6 +97,7 @@ export default function Login() {
                     placeholder="Endereço de e-mail"
                     onBlur={(e) => emailValidator(e)}
                     error={emailError}
+                    tabIndex="0"
                   />
                   <Form.Input
                     fluid
@@ -109,9 +110,6 @@ export default function Login() {
                   />
 
                   <Button
-                    disabled={
-                      !email || !password || emailError || passwordError
-                    }
                     color="orange"
                     fluid
                     size="large"

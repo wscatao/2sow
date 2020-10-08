@@ -2,12 +2,14 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Login from './Login';
+import Listing from './Listing';
 
 function App() {
   return (
     <Switch>
       <Route path="/register" component={() => <div>tela de registro</div>} />
-      <Route path="/listing" component={() => <div>tela de listagem</div>} />
+      <Route path="/edit" component={() => <div>tela de edição</div>} />
+      <Route path="/listing" component={Listing} />
       <Route exact path="/" component={Login} />
     </Switch>
   );

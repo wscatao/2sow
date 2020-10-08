@@ -9,7 +9,7 @@ function App() {
     <Switch>
       <Route path="/register" component={() => <div>tela de registro</div>} />
       <Route path="/edit" component={() => <div>tela de edição</div>} />
-      <Route path="/listing" component={Listing} />
+      <Route path="/home" component={Listing} />
       <Route exact path="/" component={Login} />
     </Switch>
   );

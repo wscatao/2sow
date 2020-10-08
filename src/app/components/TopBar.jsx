@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Menu, Container, Dropdown, Button, Confirm } from 'semantic-ui-react';
 
 import Logo from '../images/logo.png';
-import '../css/TopBar.css';
 
 export default function TopBar() {
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -27,7 +26,7 @@ export default function TopBar() {
   return (
     <Menu fixed="top" size="large" inverted stackable>
       <Container>
-        <Menu.Item as="a" header>
+        <Menu.Item as="a" header onClick={() => handleClick('home')}>
           <img src={Logo} alt="Logo 2SOW" style={{ marginRight: '1.5em' }} />
           User Manager
         </Menu.Item>
@@ -41,7 +40,7 @@ export default function TopBar() {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <Menu.Item onClick={() => handleClick('listing')}>
+        <Menu.Item onClick={() => handleClick('home')}>
           Listagem de Usuários
         </Menu.Item>
         <Menu.Item position="right">

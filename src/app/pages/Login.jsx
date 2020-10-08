@@ -14,8 +14,8 @@ import GenerateToken from '../utils/Login/GenerateToken';
 import '../css/Login.css';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const history = useHistory();
@@ -66,7 +66,7 @@ export default function Login() {
   const login = () => {
     const token = GenerateToken();
     localStorage.setItem('token', JSON.stringify(token));
-    history.push('/listing');
+    return history.push('/home');
   };
 
   return (
@@ -110,6 +110,9 @@ export default function Login() {
                   />
 
                   <Button
+                    disabled={
+                      !email || !password || emailError || passwordError
+                    }
                     color="orange"
                     fluid
                     size="large"
@@ -120,7 +123,10 @@ export default function Login() {
                 </Segment>
               </Form>
               <Message>
-                Novo usuário? <Link to="/register">Crie sua conta</Link>
+                Novo usuário?{' '}
+                <Link tabIndex="-1" to="/register">
+                  Crie sua conta
+                </Link>
               </Message>
             </Grid.Column>
           </Grid>

@@ -22,27 +22,6 @@ export default function Login() {
   const [emailError, setEmailError] = useState(null);
   const history = useHistory();
 
-  // function passwordValidator(e) {
-  //   const {
-  //     target: { value: typedPassword },
-  //   } = e;
-
-  //   //* Se não digitou nada sai da função sem ativar erro.
-  //   if (!typedPassword) {
-  //     setPasswordError(null);
-  //     return undefined;
-  //   }
-
-  //   //* Validação do tamanho da senha
-  //   if (typedPassword.length < 4) {
-  //     return setPasswordError('Digite uma senha com no mínimo 4 caracteres');
-  //   }
-
-  //   //* Passando no validador incluir no state ao sair do foco do campo (onBlur)
-  //   setPasswordError(null);
-  //   return setPassword(typedPassword);
-  // }
-
   const login = () => {
     const token = GenerateToken();
     localStorage.setItem('token', JSON.stringify(token));

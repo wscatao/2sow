@@ -9,7 +9,6 @@ function App() {
   return (
     <Switch>
       <Route path="/register" component={Register} />
-      <Route path="/edit" component={() => <div>tela de edição</div>} />
       <Route path="/home" component={Listing} />
       <Route exact path="/" component={Login} />
     </Switch>

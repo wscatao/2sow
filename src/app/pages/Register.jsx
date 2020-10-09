@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, Segment, Button, Message } from 'semantic-ui-react';
 import MaskedInput from 'react-text-mask';
+import { useHistory } from 'react-router-dom';
 
 import TopBar from '../components/TopBar';
 import EmailValidator from '../utils/Common/EmailValidator';
@@ -8,7 +9,6 @@ import FindCep from '../utils/Register/FindCep';
 import SaveUser from '../utils/Register/SaveUser';
 
 export default function Register() {
-  const [userLogin, setUserLogin] = useState(false);
   const [nome, setNome] = useState(null);
   const [cpf, setCPF] = useState(null);
   const [email, setEmail] = useState(null);
@@ -24,6 +24,7 @@ export default function Register() {
   const [formSuc, setFormSuc] = useState(false);
   const [bodyMsg, setBodyMsg] = useState(null);
   const [headerMsg, setHeaderMsg] = useState(null);
+  const history = useHistory();
 
   const findCEP = async (formCep) => {
     if (!formCep) return undefined;
@@ -102,12 +103,14 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) setUserLogin(true);
-  }, []);
+    const local = localStorage.getItem('token');
+    if (!local) return history.push('/');
+    return undefined;
+  }, [history]);
 
   return (
     <div>
-      {userLogin ? <TopBar /> : null}
+      <TopBar />
       <Container style={{ marginTop: '7em' }}>
         <Segment raised>
           <Form loading={formLoading} error={formErr} success={formSuc}>

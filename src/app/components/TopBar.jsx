@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Menu, Container, Dropdown, Button, Confirm } from 'semantic-ui-react';
+import { Menu, Container, Button, Confirm } from 'semantic-ui-react';
 
 import Logo from '../images/logo.png';
 
@@ -13,13 +13,12 @@ export default function TopBar() {
   };
 
   const handleOnConfirm = () => {
-    localStorage.removeItem('token');
     setConfirmOpen(false);
-    return history.push('/');
+    history.push('/');
+    return localStorage.removeItem('token');
   };
 
   const handleClick = (handler) => {
-    if (handler === 'edit') return history.push(`/${handler}`);
     return history.push(`/${handler}`);
   };
 
@@ -30,16 +29,9 @@ export default function TopBar() {
           <img src={Logo} alt="Logo 2SOW" style={{ marginRight: '1.5em' }} />
           User Manager
         </Menu.Item>
-        <Dropdown item simple text="Opções">
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => handleClick('edit')}>
-              Editar Usuário
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleClick('register')}>
-              Criar Usuário
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Menu.Item onClick={() => handleClick('register')}>
+          Criar Usuário
+        </Menu.Item>
         <Menu.Item onClick={() => handleClick('home')}>
           Listagem de Usuários
         </Menu.Item>

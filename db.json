@@ -1,5 +1,161 @@
 {
   "usuarios": [
-    
+    {
+      "nome": "foo bar",
+      "cpf": "213.123.123-45",
+      "email": "foo_bar@email.com",
+      "endereco": {
+        "cep": 13454000,
+        "rua": "rua talvez",
+        "numero": 785,
+        "bairro": "bairro azul",
+        "cidade": "cidade eterna"
+      },
+      "id": 1
+    },
+    {
+      "endereco": {},
+      "id": 2
+    },
+    {
+      "nome": "willy",
+      "cpf": "230.713.528-67",
+      "email": "wscatao@gmail.com",
+      "endereco": {
+        "cep": "09120450",
+        "rua": "rua corcovado",
+        "numero": "59",
+        "complemento": "apto. 2",
+        "bairro": "vila humaita",
+        "cidade": "santo andre"
+      },
+      "id": 3
+    },
+    {
+      "nome": "willy",
+      "cpf": "230.713.528-67",
+      "email": "wscatao@gmail.com",
+      "endereco": {
+        "cep": "09120450",
+        "rua": "rua corcovado",
+        "numero": "59",
+        "complemento": "apto. 2",
+        "bairro": "vila humaita",
+        "cidade": "santo andre"
+      },
+      "id": 4
+    },
+    {
+      "nome": "willy",
+      "cpf": "230.713.528-67",
+      "email": "wscatao@gmail.com",
+      "endereco": {
+        "cep": "09120450",
+        "rua": "rua corcovado",
+        "numero": "59",
+        "complemento": "apto. 2",
+        "bairro": "vila humaita",
+        "cidade": "santo andre"
+      },
+      "id": 5
+    },
+    {
+      "nome": "agatha andrade catao",
+      "cpf": "406.127.658-14",
+      "email": "agatha.andrade.catao@outlook.com",
+      "endereco": {
+        "cep": null,
+        "rua": "Rua Corcovado",
+        "numero": "59",
+        "complemento": "Apto. 2",
+        "bairro": "Vila Amábile Pezzolo",
+        "cidade": "Santo André"
+      },
+      "id": 6
+    },
+    {
+      "nome": "aisdhuiadhiuahdis",
+      "cpf": "000.000.000-00",
+      "email": "email@email.com",
+      "endereco": {
+        "cep": "04717-002",
+        "rua": "Rua Alexandre Dumas",
+        "numero": "1082",
+        "complemento": "comercial",
+        "bairro": "Chácara Santo Antônio (Zona Sul)",
+        "cidade": "São Paulo"
+      },
+      "id": 7
+    },
+    {
+      "nome": "asiudhahdiusaiudash",
+      "cpf": "648.490.949-84",
+      "email": "email@email.com",
+      "endereco": {
+        "cep": "09951495",
+        "rua": "Rua Raio de Sol",
+        "numero": "284",
+        "complemento": "aduhasd",
+        "bairro": "Piraporinha",
+        "cidade": "Diadema"
+      },
+      "id": 8
+    },
+    {
+      "nome": "Rosangela Aparecida de Andrade",
+      "cpf": "949.048.998-40",
+      "email": "abc123@email.com",
+      "endereco": {
+        "cep": "09120450",
+        "rua": "Rua Corcovado",
+        "numero": "2888",
+        "complemento": "Ap 10",
+        "bairro": "Vila Amábile Pezzolo",
+        "cidade": "Santo André"
+      },
+      "id": 9
+    },
+    {
+      "nome": "Amauri Bezerra Catão",
+      "cpf": "899.849.090-90",
+      "email": "adcond.adm@terra.com.br",
+      "endereco": {
+        "cep": "04717002",
+        "rua": "Rua Alexandre Dumas",
+        "numero": "1082",
+        "complemento": null,
+        "bairro": "Chácara Santo Antônio (Zona Sul)",
+        "cidade": "São Paulo"
+      },
+      "id": 10
+    },
+    {
+      "nome": "willy ",
+      "cpf": "230.713.528-67",
+      "email": "wscatao@gmail.com",
+      "endereco": {
+        "cep": "09120450",
+        "rua": "Rua Corcovado",
+        "numero": "59",
+        "complemento": "apto. 2",
+        "bairro": "Vila Amábile Pezzolo",
+        "cidade": "Santo André"
+      },
+      "id": 11
+    },
+    {
+      "nome": "larissa",
+      "cpf": "000.000.000-00",
+      "email": "email@email.com",
+      "endereco": {
+        "cep": "04120280",
+        "rua": "Ruaisuhduiasuidhiuas",
+        "numero": "89948",
+        "complemento": null,
+        "bairro": "asdiuhauidsiuh",
+        "cidade": "iausdhiuasdhuihasd"
+      },
+      "id": 12
+    }
   ]
 }

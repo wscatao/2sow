@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  Grid,
-  Icon,
-  Header,
-  Form,
-  Segment,
-  Button,
-  Message,
-} from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
+import { Grid, Icon, Header, Form, Segment, Button } from 'semantic-ui-react';
 
 import GenerateToken from '../utils/Login/GenerateToken';
 import EmailValidator from '../utils/Common/EmailValidator';
@@ -83,12 +75,6 @@ export default function Login() {
                   </Button>
                 </Segment>
               </Form>
-              <Message>
-                Novo usuário?{' '}
-                <Link tabIndex="-1" to="/register">
-                  Crie sua conta
-                </Link>
-              </Message>
             </Grid.Column>
           </Grid>
         </Grid.Column>

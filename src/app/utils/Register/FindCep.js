@@ -5,10 +5,7 @@ const FindCep = async (cep) => {
     const tryFind = await axios.get(`http://viacep.com.br/ws/${cep}/json`);
     return tryFind.data;
   } catch (err) {
-    const {
-      response: { status, statusText },
-    } = err;
-    return { status, statusText };
+    return err.response;
   }
 };
 

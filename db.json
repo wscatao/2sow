@@ -140,18 +140,46 @@
       "id": 11
     },
     {
-      "nome": "larissa",
-      "cpf": "000.000.000-00",
-      "email": "email@email.com",
+      "nome": "willy ",
+      "cpf": "230.713.528-67",
+      "email": "wscatao@gmail.com",
       "endereco": {
-        "cep": "04120280",
-        "rua": "Ruaisuhduiasuidhiuas",
-        "numero": "89948",
-        "complemento": null,
-        "bairro": "asdiuhauidsiuh",
-        "cidade": "iausdhiuasdhuihasd"
+        "cep": "09120450",
+        "rua": "Rua Corcovado",
+        "numero": "59",
+        "complemento": "apto. 2",
+        "bairro": "Vila Amábile Pezzolo",
+        "cidade": "Santo André"
       },
       "id": 12
+    },
+    {
+      "nome": "willy ",
+      "cpf": "230.713.528-67",
+      "email": "wscatao@gmail.com",
+      "endereco": {
+        "cep": "09120450",
+        "rua": "Rua Corcovado",
+        "numero": "59",
+        "complemento": "apto. 2",
+        "bairro": "Vila Amábile Pezzolo",
+        "cidade": "Santo André"
+      },
+      "id": 13
+    },
+    {
+      "nome": "alice catao ",
+      "cpf": "425.178.547-45",
+      "email": "alice.catao@gmail.com",
+      "endereco": {
+        "cep": "09913130",
+        "rua": "Avenida Assembléia",
+        "numero": "833",
+        "complemento": null,
+        "bairro": "Centro",
+        "cidade": "Diadema"
+      },
+      "id": 14
     }
   ]
 }

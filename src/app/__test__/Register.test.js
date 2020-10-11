@@ -1,7 +1,7 @@
 /* eslint-disable no-return-await */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import { getByText, waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/dom';
 import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Register from '../pages/Register';

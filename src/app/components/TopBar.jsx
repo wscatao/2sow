@@ -25,18 +25,34 @@ export default function TopBar() {
   return (
     <Menu fixed="top" size="large" inverted stackable>
       <Container>
-        <Menu.Item as="a" header onClick={() => handleClick('home')}>
+        <Menu.Item
+          as="a"
+          header
+          onClick={() => handleClick('home')}
+          data-testid="Logo"
+        >
           <img src={Logo} alt="Logo 2SOW" style={{ marginRight: '1.5em' }} />
           User Manager
         </Menu.Item>
-        <Menu.Item onClick={() => handleClick('register')}>
+        <Menu.Item
+          onClick={() => handleClick('register')}
+          data-testid="NovoUsuario"
+        >
           Criar Usuário
         </Menu.Item>
-        <Menu.Item onClick={() => handleClick('home')}>
+        <Menu.Item
+          onClick={() => handleClick('home')}
+          data-testid="ListaUsuario"
+        >
           Listagem de Usuários
         </Menu.Item>
         <Menu.Item position="right">
-          <Button color="red" fluid onClick={() => setConfirmOpen(true)}>
+          <Button
+            color="red"
+            fluid
+            onClick={() => setConfirmOpen(true)}
+            data-testid="BotaoSair"
+          >
             Sair
           </Button>
           <Confirm
@@ -46,6 +62,7 @@ export default function TopBar() {
             confirmButton="Sair"
             onCancel={handleCancel}
             onConfirm={handleOnConfirm}
+            data-testid="AvisoSair"
           />
         </Menu.Item>
       </Container>

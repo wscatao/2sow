@@ -196,6 +196,11 @@ export default function Listing() {
                 </Table.Row>
               ))}
             <Confirm
+              header="Excluir usuário"
+              content="Tem certeza que deseja excluir"
+              cancelButton="Cancelar"
+              confirmButton="Sim"
+              size="large"
               value={selecForExc}
               open={openConfirm}
               onCancel={() => setOpenConfirm(false)}

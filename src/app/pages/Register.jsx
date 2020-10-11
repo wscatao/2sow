@@ -122,12 +122,14 @@ export default function Register() {
                 width={8}
                 onChange={(e) => setNome(e.target.value)}
                 value={nome}
+                id="inputNome"
               />
               <Form.Input
                 required
                 label="CPF"
                 placeholder="Digite seu CPF"
                 width={8}
+                data-testid="inputCpf"
               >
                 <MaskedInput
                   mask={[
@@ -162,7 +164,7 @@ export default function Register() {
                 error={emailError}
                 value={email}
               />
-              <Form.Input required label="CEP" width={4}>
+              <Form.Input required label="CEP" width={4} data-testid="CEP">
                 <MaskedInput
                   mask={[
                     /[0-9]/,

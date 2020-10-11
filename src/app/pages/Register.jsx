@@ -228,14 +228,25 @@ export default function Register() {
                 value={cidade}
               />
             </Form.Group>
-            <Message error header={headerMsg} content={bodyMsg} />
-            <Message success header={headerMsg} content={bodyMsg} />
+            <Message
+              error
+              header={headerMsg}
+              content={bodyMsg}
+              data-testid="msgErr"
+            />
+            <Message
+              success
+              header={headerMsg}
+              content={bodyMsg}
+              data-testid="msgSuc"
+            />
             <Button
               content="Salvar"
               icon="save"
               labelPosition="left"
               color="green"
               onClick={() => save()}
+              data-testid="saveButton"
             />
             <Button
               content="Limpar"

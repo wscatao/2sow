@@ -1,18 +1,24 @@
+/* eslint-disable no-return-await */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
+import { getByText, waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Register from '../pages/Register';
-import Login from '../pages/Login';
 import renderWithRouter from './renderWithRouter';
-import { fireEvent } from '@testing-library/dom';
 
 const component = <Register />;
 const route = '/register';
 const fakeToken = 'token fake';
+const nome = 'Willy de Souza Catão';
+const cpf = '230.713.528-67';
+const emailValido = 'wscatao@gmail.com';
 const emailInvalido = 'wscataoSemArroba';
-// const senhaInvalida = 'abc';
-// const emailValido = 'wscatao@gmail.com';
-// const senhaValida = 'abc12345';
+const cep = '09120450';
+const logradouro = 'Rua Corcovado';
+const localidade = 'Santo André';
+const bairro = 'Vila Amábile Pezzolo';
+
 require('jest-localstorage-mock');
 
 beforeAll(() => {
@@ -35,8 +41,8 @@ describe('Verifica se existem os inputs para cadastro', () => {
 
   it('Verifica se existe CPF', () => {
     const { getByTestId } = renderWithRouter(component, { route });
-    const cpf = getByTestId('inputCpf');
-    expect(cpf).toBeInTheDocument();
+    const inputCpf = getByTestId('inputCpf');
+    expect(inputCpf).toBeInTheDocument();
   });
 
   it('Verifica se existe Email', () => {
@@ -63,8 +69,8 @@ describe('Verifica se existem os inputs para cadastro', () => {
 
   it('Verifica se existe CEP', () => {
     const { getByTestId } = renderWithRouter(component, { route });
-    const cep = getByTestId('CEP');
-    expect(cep).toBeInTheDocument();
+    const cepInput = getByTestId('CEP');
+    expect(cepInput).toBeInTheDocument();
   });
 
   it('Verifica se existe Rua', () => {
@@ -98,6 +104,166 @@ describe('Verifica se existem os inputs para cadastro', () => {
   });
 });
 
-describe('Verifica se ao digitar um CEP válido os campos são preenchidos', () => {
-  
+describe('Verifica funcionalidade de autopreencher endereço', () => {
+  it('Simula comportamento de digitar um Cep válido', async () => {
+    const { getByTestId, getByPlaceholderText } = renderWithRouter(component, {
+      route,
+    });
+    const input = getByTestId('CEP');
+    const cepInput = input.children[0];
+    const ruaInput = getByPlaceholderText(/Logradouro/i);
+    const inputBairro = getByPlaceholderText(/Bairro/i);
+    const inputCidade = getByPlaceholderText(/Cidade/i);
+
+    expect(ruaInput).toBeInTheDocument();
+    expect(cepInput).toBeInTheDocument();
+    expect(inputCidade).toBeInTheDocument();
+    expect(inputBairro).toBeInTheDocument();
+
+    cepInput.focus();
+    userEvent.type(cepInput, cep);
+
+    expect(cepInput).toHaveValue('09120-450');
+
+    userEvent.tab();
+
+    await act(
+      async () => await waitFor(() => expect(ruaInput).toHaveValue(logradouro)),
+    );
+    await act(
+      async () =>
+        await waitFor(() => expect(inputCidade).toHaveValue(localidade)),
+    );
+    await act(
+      async () => await waitFor(() => expect(inputBairro).toHaveValue(bairro)),
+    );
+  });
+});
+
+describe('Verifica os avisos ao preencher o registro', () => {
+  it('Simula a inclusão de um registro sem campo obrigatório', async () => {
+    const {
+      getByLabelText,
+      getByTestId,
+      getByPlaceholderText,
+    } = renderWithRouter(component, { route });
+
+    const inputNome = getByLabelText(/Nome/i);
+    const divCpf = getByTestId('inputCpf');
+    const inputCpf = divCpf.children[0];
+    const emailInput = getByPlaceholderText(/Digite seu e-mail/i);
+    const divCep = getByTestId('CEP');
+    const cepInput = divCep.children[0];
+    const ruaInput = getByPlaceholderText(/Logradouro/i);
+    const inputBairro = getByPlaceholderText(/Bairro/i);
+    const inputCidade = getByPlaceholderText(/Cidade/i);
+    const saveButton = getByTestId('saveButton');
+
+    expect(emailInput).toBeInTheDocument();
+    expect(inputNome).toBeInTheDocument();
+    expect(inputCpf).toBeInTheDocument();
+    expect(cepInput).toBeInTheDocument();
+    expect(ruaInput).toBeInTheDocument();
+    expect(inputCidade).toBeInTheDocument();
+    expect(inputBairro).toBeInTheDocument();
+
+    //* Digita os dados nos inputs
+    inputNome.focus();
+    userEvent.type(inputNome, nome);
+    userEvent.tab();
+    userEvent.type(inputCpf, cpf);
+    userEvent.tab();
+    userEvent.type(emailInput, emailValido);
+    userEvent.tab();
+    userEvent.type(cepInput, cep);
+    userEvent.tab();
+
+    expect(inputNome).toHaveValue(nome);
+    expect(inputCpf).toHaveValue(cpf);
+    expect(emailInput).toHaveValue(emailValido);
+
+    await act(
+      async () => await waitFor(() => expect(ruaInput).toHaveValue(logradouro)),
+    );
+    await act(
+      async () =>
+        await waitFor(() => expect(inputCidade).toHaveValue(localidade)),
+    );
+    await act(
+      async () => await waitFor(() => expect(inputBairro).toHaveValue(bairro)),
+    );
+
+    saveButton.focus();
+    userEvent.click(saveButton);
+
+    await act(async () => {
+      await waitFor(() => expect(getByTestId('msgErr')).toBeInTheDocument());
+    });
+  });
+
+  it('Simula a inclusão de um regitro e se recebe msg de sucesso', async () => {
+    const {
+      getByLabelText,
+      getByTestId,
+      getByPlaceholderText,
+    } = renderWithRouter(component, { route });
+
+    const inputNome = getByLabelText(/Nome/i);
+    const divCpf = getByTestId('inputCpf');
+    const inputCpf = divCpf.children[0];
+    const emailInput = getByPlaceholderText(/Digite seu e-mail/i);
+    const divCep = getByTestId('CEP');
+    const cepInput = divCep.children[0];
+    const ruaInput = getByPlaceholderText(/Logradouro/i);
+    const inputBairro = getByPlaceholderText(/Bairro/i);
+    const inputCidade = getByPlaceholderText(/Cidade/i);
+    const saveButton = getByTestId('saveButton');
+    const inputNumero = getByPlaceholderText(/Número/i);
+
+    expect(emailInput).toBeInTheDocument();
+    expect(inputNome).toBeInTheDocument();
+    expect(inputCpf).toBeInTheDocument();
+    expect(cepInput).toBeInTheDocument();
+    expect(ruaInput).toBeInTheDocument();
+    expect(inputCidade).toBeInTheDocument();
+    expect(inputBairro).toBeInTheDocument();
+    expect(inputNumero).toBeInTheDocument();
+
+    //* Digita os dados nos inputs
+    inputNome.focus();
+    userEvent.type(inputNome, nome);
+    userEvent.tab();
+    userEvent.type(inputCpf, cpf);
+    userEvent.tab();
+    userEvent.type(emailInput, emailValido);
+    userEvent.tab();
+    userEvent.type(cepInput, cep);
+    userEvent.tab();
+
+    expect(inputNome).toHaveValue(nome);
+    expect(inputCpf).toHaveValue(cpf);
+    expect(emailInput).toHaveValue(emailValido);
+
+    await act(
+      async () => await waitFor(() => expect(ruaInput).toHaveValue(logradouro)),
+    );
+    await act(
+      async () =>
+        await waitFor(() => expect(inputCidade).toHaveValue(localidade)),
+    );
+    await act(
+      async () => await waitFor(() => expect(inputBairro).toHaveValue(bairro)),
+    );
+
+    inputNumero.focus();
+    userEvent.type(inputNumero, '59');
+    expect(inputNumero).toHaveValue('59');
+
+    saveButton.focus();
+    userEvent.click(saveButton);
+
+    await act(async () => {
+      await waitFor(() => expect(getByTestId('msgSuc')).toBeInTheDocument());
+    });
+  });
 });

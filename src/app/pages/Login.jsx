@@ -36,7 +36,7 @@ export default function Login() {
             verticalAlign="middle"
           >
             <Grid.Column style={{ maxWidth: 450 }}>
-              <Header as="h2" textAlign="center">
+              <Header as="h2" textAlign="center" data-testid="title-login">
                 <Icon name="users" circular /> Login
               </Header>
               <Form size="large">
@@ -49,8 +49,10 @@ export default function Login() {
                     onBlur={(e) => EmailValidator(e, setEmailError, setEmail)}
                     error={emailError}
                     tabIndex="0"
+                    data-testid="inputEmail"
                   />
                   <Form.Input
+                    data-testid="inputPassword"
                     fluid
                     icon="lock"
                     iconPosition="left"
@@ -59,12 +61,18 @@ export default function Login() {
                     onBlur={(e) =>
                       PasswordValidator(e, setPasswordError, setPassword)
                     }
+                    onChange={(e) => setPassword(e.target.value)}
                     error={passwordError}
                   />
 
                   <Button
+                    data-testid="buttonLogin"
                     disabled={
-                      !email || !password || emailError || passwordError
+                      !email ||
+                      !password ||
+                      emailError ||
+                      passwordError ||
+                      password.length < 4
                     }
                     color="orange"
                     fluid

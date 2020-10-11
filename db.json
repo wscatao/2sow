@@ -95,20 +95,6 @@
         "cidade": "Santo André"
       },
       "id": 18
-    },
-    {
-      "nome": "Usuario Teste",
-      "cpf": "230.713.528-67",
-      "email": "wscatao@gmail.com",
-      "endereco": {
-        "cep": "09120450",
-        "rua": "Rua Corcovado",
-        "numero": "59",
-        "complemento": "apt",
-        "bairro": "Vila Amábile Pezzolo",
-        "cidade": "Santo André"
-      },
-      "id": 19
     }
   ]
 }

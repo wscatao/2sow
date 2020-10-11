@@ -14,6 +14,6 @@ function PasswordValidator(e, setPasswordError, setPassword) {
   //* Passando no validador incluir no state ao sair do foco do campo (onBlur)
   setPasswordError(null);
   return setPassword(typedPassword);
-};
+}
 
 export default PasswordValidator;

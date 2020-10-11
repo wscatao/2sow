@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sheerun/mutationobserver-shim": "^0.3.3",
+    "@testing-library/dom": "^7.24.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "history": "^5.0.0",
+    "prop-types": "^15.7.2",
     "rand-token": "^1.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -47,6 +51,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "jest-localstorage-mock": "^2.4.3",
     "prettier": "^2.1.2"
   }
 }

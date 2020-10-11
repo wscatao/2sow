@@ -1,15 +1,15 @@
 {
   "usuarios": [
     {
-      "nome": "foo bar",
+      "nome": "Atualizado o nome",
       "cpf": "213.123.123-45",
       "email": "foo_bar@email.com",
       "endereco": {
-        "cep": 13454000,
-        "rua": "rua talvez",
+        "cep": "13454000",
+        "rua": "Rua da Agricultura",
         "numero": 785,
-        "bairro": "bairro azul",
-        "cidade": "cidade eterna"
+        "bairro": "Loteamento Industrial",
+        "cidade": "Santa Bárbara D'Oeste"
       },
       "id": 1
     },
@@ -70,48 +70,6 @@
       "id": 6
     },
     {
-      "nome": "aisdhuiadhiuahdis",
-      "cpf": "000.000.000-00",
-      "email": "email@email.com",
-      "endereco": {
-        "cep": "04717-002",
-        "rua": "Rua Alexandre Dumas",
-        "numero": "1082",
-        "complemento": "comercial",
-        "bairro": "Chácara Santo Antônio (Zona Sul)",
-        "cidade": "São Paulo"
-      },
-      "id": 7
-    },
-    {
-      "nome": "asiudhahdiusaiudash",
-      "cpf": "648.490.949-84",
-      "email": "email@email.com",
-      "endereco": {
-        "cep": "09951495",
-        "rua": "Rua Raio de Sol",
-        "numero": "284",
-        "complemento": "aduhasd",
-        "bairro": "Piraporinha",
-        "cidade": "Diadema"
-      },
-      "id": 8
-    },
-    {
-      "nome": "Rosangela Aparecida de Andrade",
-      "cpf": "949.048.998-40",
-      "email": "abc123@email.com",
-      "endereco": {
-        "cep": "09120450",
-        "rua": "Rua Corcovado",
-        "numero": "2888",
-        "complemento": "Ap 10",
-        "bairro": "Vila Amábile Pezzolo",
-        "cidade": "Santo André"
-      },
-      "id": 9
-    },
-    {
       "nome": "Amauri Bezerra Catão",
       "cpf": "899.849.090-90",
       "email": "adcond.adm@terra.com.br",
@@ -119,7 +77,6 @@
         "cep": "04717002",
         "rua": "Rua Alexandre Dumas",
         "numero": "1082",
-        "complemento": null,
         "bairro": "Chácara Santo Antônio (Zona Sul)",
         "cidade": "São Paulo"
       },
@@ -137,49 +94,21 @@
         "bairro": "Vila Amábile Pezzolo",
         "cidade": "Santo André"
       },
-      "id": 11
+      "id": 18
     },
     {
-      "nome": "willy ",
+      "nome": "Usuario Teste",
       "cpf": "230.713.528-67",
       "email": "wscatao@gmail.com",
       "endereco": {
         "cep": "09120450",
         "rua": "Rua Corcovado",
         "numero": "59",
-        "complemento": "apto. 2",
+        "complemento": "apt",
         "bairro": "Vila Amábile Pezzolo",
         "cidade": "Santo André"
       },
-      "id": 12
-    },
-    {
-      "nome": "willy ",
-      "cpf": "230.713.528-67",
-      "email": "wscatao@gmail.com",
-      "endereco": {
-        "cep": "09120450",
-        "rua": "Rua Corcovado",
-        "numero": "59",
-        "complemento": "apto. 2",
-        "bairro": "Vila Amábile Pezzolo",
-        "cidade": "Santo André"
-      },
-      "id": 13
-    },
-    {
-      "nome": "alice catao ",
-      "cpf": "425.178.547-45",
-      "email": "alice.catao@gmail.com",
-      "endereco": {
-        "cep": "09913130",
-        "rua": "Avenida Assembléia",
-        "numero": "833",
-        "complemento": null,
-        "bairro": "Centro",
-        "cidade": "Diadema"
-      },
-      "id": 14
+      "id": 19
     }
   ]
 }

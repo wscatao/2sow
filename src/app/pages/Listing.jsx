@@ -11,6 +11,7 @@ import {
   Segment,
   Dropdown,
   Input,
+  Confirm,
 } from 'semantic-ui-react';
 
 import TopBar from '../components/TopBar';
@@ -19,6 +20,7 @@ import {
   GetUsersByPage,
   GetUsersByParams,
 } from '../utils/Listing/GetUsers';
+import DeleteUser from '../utils/Listing/DeleteUser';
 
 export default function Listing() {
   const history = useHistory();
@@ -28,28 +30,14 @@ export default function Listing() {
   const [loading, setLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [queryParams, setQueryParams] = useState(null);
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [selecForExc, setSelecForExc] = useState(null);
   const options = [
     { key: 'nome', text: 'Nome', value: 'nome_like' },
     { key: 'cpf', text: 'CPF', value: 'cpf_like' },
     { key: 'email', text: 'Email', value: 'email_like' },
     { key: 'cidade', text: 'Cidade', value: 'endereco.cidade_like' },
   ];
-
-  const mountPagAndUsers = async () => {
-    //* Primeiro é setado a quantidade de páginas da tabela
-    //* Foi setado para exibir 10 linhas por página.
-    const qtdPeople = await GetPageQtd();
-    const arrPags = [];
-    for (let i = 1; i <= qtdPeople; i += 1) {
-      arrPags.push(i);
-    }
-    setQtdPags(arrPags);
-
-    //* Depois de setado o estado de páginas, é feito a requisição para a primeira página.
-    const people = await GetUsersByPage(page);
-    setUsers([...people]);
-    return setLoading(false);
-  };
 
   const handlePage = async (val) => {
     const getPage = page;
@@ -94,13 +82,48 @@ export default function Listing() {
     return setLoading(false);
   };
 
+  const deleteUser = async (id) => {
+    setLoading(true);
+    await DeleteUser(id);
+    //* Primeiro é setado a quantidade de páginas da tabela
+    //* Foi setado para exibir 10 linhas por página.
+    const qtdPeople = await GetPageQtd();
+    const arrPags = [];
+    for (let i = 1; i <= qtdPeople; i += 1) {
+      arrPags.push(i);
+    }
+    setQtdPags(arrPags);
+
+    //* Depois de setado o estado de páginas, é feito a requisição para a primeira página.
+    const people = await GetUsersByPage(page);
+    setUsers([...people]);
+    setLoading(false);
+    setOpenConfirm(false);
+  };
+
   useEffect(() => {
     const local = localStorage.getItem('token');
-    if (!local) return history.push('/');
+    if (!local) history.push('/');
 
-    setLoading(true);
+    async function mountPagAndUsers() {
+      setLoading(true);
+      //* Primeiro é setado a quantidade de páginas da tabela
+      //* Foi setado para exibir 10 linhas por página.
+      const qtdPeople = await GetPageQtd();
+      const arrPags = [];
+      for (let i = 1; i <= qtdPeople; i += 1) {
+        arrPags.push(i);
+      }
+      setQtdPags(arrPags);
+
+      //* Depois de setado o estado de páginas, é feito a requisição para a primeira página.
+      const people = await GetUsersByPage(page);
+      setUsers([...people]);
+      return setLoading(false);
+    }
+
     mountPagAndUsers();
-  }, []);
+  }, [history, page]);
 
   return (
     <div>
@@ -158,12 +181,26 @@ export default function Listing() {
                     >
                       <Icon name="pencil" />
                     </Button>
-                    <Button icon color="black">
+                    <Button
+                      icon
+                      color="black"
+                      value={user.id}
+                      onClick={(e, { value }) => {
+                        setSelecForExc(value);
+                        setOpenConfirm(true);
+                      }}
+                    >
                       <Icon name="trash alternate" />
                     </Button>
                   </Table.Cell>
                 </Table.Row>
               ))}
+            <Confirm
+              value={selecForExc}
+              open={openConfirm}
+              onCancel={() => setOpenConfirm(false)}
+              onConfirm={(e, { value }) => deleteUser(value)}
+            />
           </Table.Body>
 
           <Table.Footer fullWidth>

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import TopBar from '../components/TopBar';
 import EmailValidator from '../utils/Common/EmailValidator';
-import FindCep from '../utils/Register/FindCep';
+import FindCep from '../utils/Common/FindCep';
 import SaveUser from '../utils/Register/SaveUser';
 
 export default function Register() {

@@ -128,7 +128,7 @@ export default function Listing() {
   return (
     <div>
       <TopBar />
-      <Container style={{ marginTop: '10em' }}>
+      <Container style={{ marginTop: '5em' }}>
         <Segment raised>
           <Input
             type="text"

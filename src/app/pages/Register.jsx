@@ -111,7 +111,7 @@ export default function Register() {
   return (
     <div>
       <TopBar />
-      <Container style={{ marginTop: '7em' }}>
+      <Container style={{ marginTop: '5em' }}>
         <Segment raised>
           <Form loading={formLoading} error={formErr} success={formSuc}>
             <Form.Group>
